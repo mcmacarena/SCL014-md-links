@@ -4,4 +4,7 @@ const path = require('path');
 let pathRequire = process.argv[2]
 pathRequire = path.resolve(pathRequire);
 
-mdlinks(pathRequire)
+const option1 = process.argv[3];
+const option2 = process.argv[4];
+
+mdlinks(pathRequire,option1,option2)
