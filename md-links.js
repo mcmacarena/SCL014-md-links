@@ -3,6 +3,7 @@ const fs = require('fs');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const fetchUrl = require("fetch").fetchUrl;
+const path = require('path');
 // para convertir a promesas metodos de node
 const util = require('util');
 
@@ -48,17 +49,18 @@ module.exports = (path, option1, option2) => {
 
 // primera funcion que lee la ruta o archivo .md que ingresa el usuario, devuelve array contenedor de rutas de archivos .md
 
-const readPathToFile = (path) => {
+const readPathToFile = (pathRequire) => {
+  const pathAbsolute = path.resolve(pathRequire)
   let arrayPaths = []
   const readPath = util.promisify(fs.readdir);
-  if (path.split('.')[1] === 'md') {
-    arrayPaths[0] = path;
+  if (pathAbsolute.split('.')[1] === 'md') {
+    arrayPaths[0] = pathAbsolute;
     return arrayPaths
   } else {
-    return readPath(path).
+    return readPath(pathAbsolute).
       then((files) => {
         const arrayPathsFilter = files.filter((path) => path.split('.')[1] === 'md')
-        arrayPaths = arrayPathsFilter.map((archive) => path + '\\' + archive)
+        arrayPaths = arrayPathsFilter.map((archive) => pathAbsolute + '\\' + archive)
         return arrayPaths
       })
   }
