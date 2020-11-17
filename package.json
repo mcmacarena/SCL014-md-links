@@ -1,6 +1,6 @@
 {
   "name": "md-links-mcmacarena",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "dependencies": {
     "fetch": "^1.1.0",
     "jsdom": "^16.4.0",
@@ -21,9 +21,12 @@
   "keywords": [],
   "author": "Macarena Cuevas Guzmán",
   "license": "ISC",
+  "bin": {
+    "md-links-mcmacarena": "./index.js"
+  },
   "bugs": {
     "url": "https://github.com/mcmacarena/SCL014-md-links/issues"
   },
   "homepage": "https://github.com/mcmacarena/SCL014-md-links#readme",
-  "description": "Finks links in files extention md, return info, status, stats"
+  "description": "Find links in files extention md, return info, status, stats"
 }

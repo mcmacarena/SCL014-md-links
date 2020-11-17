@@ -14,7 +14,7 @@ const mdlinks = (path) => {
     if (path !== undefined) {
       resolve();
     } else {
-      reject(new Error('La ruta no existe, ingrésala otra vez'))
+      reject(console.log('Asegúrate de ingresar una ruta'))
     }
   });
 }
@@ -41,8 +41,6 @@ module.exports = (path, option1, option2) => {
             })
         })
     })
-
-
     .catch(() => console.log('La ruta no existe, ingrésala otra vez'))
 };
 
@@ -137,7 +135,7 @@ const statusLinks = (link) => {
 }
 
 
-// cuartan funcion que devuelve la informacion
+// cuarta funcion que devuelve la informacion
 const returnInformation = (statusLinks, option1, option2) => {
   if (option1 === undefined && option2 === undefined) {
     let objectNoOption = {};
