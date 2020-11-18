@@ -54,7 +54,7 @@ const readPathToFile = (pathRequire) => {
   if (pathAbsolute.split('.')[1] === 'md') {
     arrayPaths[0] = pathAbsolute;
     return arrayPaths
-  } else {
+  } else{
     return readPath(pathAbsolute).
       then((files) => {
         const arrayPathsFilter = files.filter((path) => path.split('.')[1] === 'md')
