@@ -44,9 +44,7 @@ module.exports = (path, option1, option2) => {
     .catch(() => console.log('La ruta no existe, ingrésala otra vez'))
 };
 
-
 // primera funcion que lee la ruta o archivo .md que ingresa el usuario, devuelve array contenedor de rutas de archivos .md
-
 const readPathToFile = (pathRequire) => {
   const pathAbsolute = path.resolve(pathRequire)
   let arrayPaths = []
@@ -137,7 +135,13 @@ const statusLinks = (link) => {
 
 // cuarta funcion que devuelve la informacion
 const returnInformation = (statusLinks, option1, option2) => {
-  if (option1 === undefined && option2 === undefined) {
+  let validate =false;
+  let stats=false;
+  if(option1==="--validate" && option2=== undefined) validate=true;
+  else if(option1==="--stats" && option2=== undefined) stats=true;
+  else if((option1==="--validate" && option2==="--stats")||(option2==="--validate" && option1==="--stats")) {validate=true; stats=true};
+
+  if (validate===false && stats===false) {
     let objectNoOption = {};
     const arrayNoOption = statusLinks.map((links) => {
       return objectNoOption =
@@ -149,19 +153,19 @@ const returnInformation = (statusLinks, option1, option2) => {
     })
     return console.log(arrayNoOption)
   }
-  else if (option1 === "--validate" && option2 === undefined) {
+  else if (validate===true && stats===false) {
     return console.log(statusLinks)
   }
-  else if (option1 === "--stats" && option2 === undefined) {
+  else if (validate===false && stats===true) {
     let objectStatus = {};
     objectStatus =
     {
       Total: statusLinks.length,
       Unique: orderArray(statusLinks)
     }
-    return console.log(objectStatus)
+    return console.table(objectStatus)
 
-  } else if ((option1 === "--validate" && option2 === "--stats") || (option1 === "--stats" && option2 === "--validate")) {
+  } else if (validate===true && stats===true) {
 
     let broken = 0;
     for (let i = 0; i < statusLinks; i++) {
@@ -174,7 +178,7 @@ const returnInformation = (statusLinks, option1, option2) => {
       Unique: orderArray(statusLinks),
       Broken: broken
     }
-    return console.log(objectStatus)
+    return console.table(objectStatus)
 
   } else {
     return console.log('Ingresamente correctamente las opciones!')

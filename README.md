@@ -2,9 +2,9 @@
 
 ## Índice
 
-* [1. Instalación](#1-preámbulo)
-* [2. Dependencias](#2-resumen-del-proyecto)
-* [3. Uso y opciones](#3-uso-y-opciones)
+* [1. Instalación](#1-Instalación)
+* [2. Dependencias](#2-Dependencias)
+* [3. Uso y opciones](#3-Uso-y-opciones)
 
 ***
 
