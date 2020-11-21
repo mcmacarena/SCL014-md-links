@@ -122,7 +122,7 @@ const statusLinks = (link) => {
       {
         href: link.href,
         text: link.text,
-        file: link.file,
+        file: link.file.split(process.cwd())[1],
         status: status,
         numberStatus: response
       }
@@ -135,13 +135,7 @@ const statusLinks = (link) => {
 
 // cuarta funcion que devuelve la informacion
 const returnInformation = (statusLinks, option1, option2) => {
-  let validate =false;
-  let stats=false;
-  if(option1==="--validate" && option2=== undefined) validate=true;
-  else if(option1==="--stats" && option2=== undefined) stats=true;
-  else if((option1==="--validate" && option2==="--stats")||(option2==="--validate" && option1==="--stats")) {validate=true; stats=true};
-
-  if (validate===false && stats===false) {
+  if (option1=== undefined && option2=== undefined) {
     let objectNoOption = {};
     const arrayNoOption = statusLinks.map((links) => {
       return objectNoOption =
@@ -151,12 +145,12 @@ const returnInformation = (statusLinks, option1, option2) => {
         file: links.file
       }
     })
-    return console.log(arrayNoOption)
+    return console.table(arrayNoOption)
   }
-  else if (validate===true && stats===false) {
-    return console.log(statusLinks)
+  else if ((option1==="--validate" || option1=== "--v") && option2=== undefined) {
+    return console.table(statusLinks)
   }
-  else if (validate===false && stats===true) {
+  else if ((option1==="--stats"|| option1=== "--s") && option2=== undefined) {
     let objectStatus = {};
     objectStatus =
     {
@@ -165,7 +159,8 @@ const returnInformation = (statusLinks, option1, option2) => {
     }
     return console.table(objectStatus)
 
-  } else if (validate===true && stats===true) {
+  } else if (((option1==="--validate"|| option1=== "--v") && (option2==="--stats"|| option2=== "--s")) ||
+  ((option2==="--validate"|| option2=== "--v") && (option1==="--stats"|| option1=== "--s"))) {
 
     let broken = 0;
     for (let i = 0; i < statusLinks; i++) {
@@ -205,4 +200,3 @@ const orderArray = (statusLinks) => {
   }
   return unique
 }
-
