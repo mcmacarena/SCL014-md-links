@@ -6,7 +6,7 @@
 * [2. Instalación](#2-Instalación)
 * [3. Dependencias](#3-Dependencias)
 * [4. Uso en la terminal](#4-Uso-en-la-terminal)
-* [5. Uso en la API](#3-Uso-en-la-API)
+* [5. Uso en la API](#5-Uso-en-la-API)
 
 ***
 
